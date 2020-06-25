@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>Web Components Sample 1</title>
+    <script type="text/javascript">
+        class TestWC extends HTMLElement {
+            constructor() {
+                super()
+                let tpl = document.getElementById('test-wc')
+                let tplContent = tpl.content
+                let shadowRoot = this.attachShadow({ mode: 'open' })
+                shadowRoot.appendChild(tplContent.cloneNode(true))
+            }
+        }
+        customElements.define('test-wc', TestWC)
+    </script>
+</head>
+
+<body>
+    <template id="test-wc">
+        <style>
+            p {
+                color: red;
+            }
+
+            div {
+                background-color: lightgray;
+                padding: 0.5rem;
+            }
+        </style>
+        <div>
+            <p>Test Component</p>
+        </div>
+        <p>More</p>
+    </template>
+    <p>Something goes here</p>
+    <test-wc></test-wc>
+    <test-wc></test-wc>
+</body>
+
+</html>
